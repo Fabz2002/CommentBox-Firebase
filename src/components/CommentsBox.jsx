@@ -1,4 +1,5 @@
 import { useCommentsRegistered } from '../context/CommentsContext';
+import CardComment from './CardComment';
 function CommentsBox() {
 	const { commentsRegistered } = useCommentsRegistered();
 	return (
@@ -6,18 +7,14 @@ function CommentsBox() {
 			className="h-3/4  w-full bg-center bg-cover opacity-80 bg-[url('../../img/CommentsBackground.jpg')]
          "
 		>
-			{commentsRegistered ? <CommentsContent /> : <NoComments />}
+			{!commentsRegistered ? <CommentsContent /> : <NoComments />}
 		</div>
 	);
 }
 function CommentsContent() {
-	return <div className='text-white'>nashe</div>;
+	return <CardComment comment={'hola'} name={'titulo'} />;
 }
 function NoComments() {
-	return (
-		<div className='text-white container text-center h-1/2  bg-transparent'>
-			No hay comentarios{' '}
-		</div>
-	);
+	return <div className='text-white  text-center '>No hay comentarios </div>;
 }
 export default CommentsBox;
