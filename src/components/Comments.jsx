@@ -4,12 +4,12 @@ import { useState } from 'react';
 import { CommentsContextProvider } from '../context/CommentsContext';
 function Comments() {
 	return (
-		<section className='bg-white h-screen'>
+		<div className='bg-white h-full'>
 			<CommentsContextProvider>
 				<CommentsBox />
 				<CommentsForm />
 			</CommentsContextProvider>
-		</section>
+		</div>
 	);
 }
 

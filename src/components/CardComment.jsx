@@ -1,4 +1,4 @@
-function CardComment({ name, comment }) {
+function CardComment({ name = '', comment = '' }) {
 	return (
 		<div className='flex flex-col h-full items-center justify-center text-center  rounded-md  py-6 px-8 bg-transparent '>
 			<div className='relative w-20 h-20 mb-4'>
@@ -8,9 +8,6 @@ function CardComment({ name, comment }) {
 			</div>
 			<h2 className='text-lg font-medium mb-2'>{name}</h2>
 			<p className='text-gray-500'>{comment}</p>
-			<div className='absolute bottom-0 right-0 text-4xl text-gray-400'>
-				&rdquo;
-			</div>
 		</div>
 	);
 }

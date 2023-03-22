@@ -1,11 +1,36 @@
+import { useState } from 'react';
+import { useCommentsRegistered } from '../context/CommentsContext';
 function CommentsForm() {
+	const { saveComment, setCommentsRegistered } = useCommentsRegistered();
+	const [comment, setComment] = useState({
+		name: '',
+		email: '',
+		comment: '',
+	});
+	const [error, setError] = useState('');
+	async function handleSubmit(e) {
+		e.preventDefault();
+		setError('');
+		try {
+			await saveComment(comment.name, comment.email, comment.comment);
+			setCommentsRegistered(true);
+			setComment({
+				name: '',
+				email: '',
+				comment: '',
+			});
+		} catch (error) {
+			setError(error.toString());
+		}
+	}
 	return (
-		<div className=' w-full min-[484px]:w-[450px] md:w-[650px] m-auto p-4 '>
+		<div className=' w-full min-[484px]:w-[450px] md:w-[650px] md:h-[500px]  m-auto p-3  mt-5'>
+			{error}
 			<h1 className='mb-4 border-b-2 border-[#f3f3f3] w-full text-start text-2xl text-current'>
 				Deja tu comentario
 			</h1>
 			<p className='text-sm text-gray-500'>Tu email no será publicado.</p>
-			<form className='pt-4 text-sm'>
+			<form className='pt-4 text-sm' onSubmit={e => handleSubmit(e)}>
 				<div className='mb-8 flex  items-center bg-[#f3f3f3] p-1  '>
 					<svg
 						xmlns='http://www.w3.org/2000/svg'
@@ -18,8 +43,9 @@ function CommentsForm() {
 						name='name'
 						type='text'
 						placeholder='Nickname(obligatorio)'
+						value={comment.name}
 						className='block w-full outline-none rounded-sm bg-transparent  py-1 p-2'
-						onChange={e => console.log(e.target.value)}
+						onChange={e => setComment({ ...comment, name: e.target.value })}
 						required
 					/>
 				</div>
@@ -32,23 +58,26 @@ function CommentsForm() {
 						<path d='M64 112c-8.8 0-16 7.2-16 16v22.1L220.5 291.7c20.7 17 50.4 17 71.1 0L464 150.1V128c0-8.8-7.2-16-16-16H64zM48 212.2V384c0 8.8 7.2 16 16 16H448c8.8 0 16-7.2 16-16V212.2L322 328.8c-38.4 31.5-93.7 31.5-132 0L48 212.2zM0 128C0 92.7 28.7 64 64 64H448c35.3 0 64 28.7 64 64V384c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128z' />
 					</svg>
 					<input
-						name='comment'
+						name='email'
 						type='text'
+						value={comment.email}
 						placeholder='E-mail(obligatorio)'
 						className='block w-full outline-none rounded-sm bg-transparent  py-1 p-2'
-						onChange={e => console.log(e.target.value)}
+						onChange={e => setComment({ ...comment, email: e.target.value })}
 						required
 					/>
 				</div>
 				<div>
 					<textarea
-						id='message'
+						id='comment'
+						value={comment.comment}
 						rows='4'
 						className='block p-2.5 w-full text-sm outline-none bg-gray-50 rounded-lg border border-gray-300 '
 						placeholder='Comenta aqui...'
+						onChange={e => setComment({ ...comment, comment: e.target.value })}
 					></textarea>
 				</div>
-				<button className='w-full rounded py-2 px-4 bg-[#78d0ed9c]  text-white mt-3 hover:bg-[#78CFED]'>
+				<button className='w-full rounded py-2 px-4 bg-[#78d0ed9c]  text-white mt-3 hover:bg-[#78CFED] hover:text-black'>
 					COMENTAR
 				</button>
 			</form>
