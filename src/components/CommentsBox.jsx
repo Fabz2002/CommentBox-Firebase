@@ -1,4 +1,3 @@
-import { comment } from 'postcss';
 import { useEffect, useState } from 'react';
 import { useCommentsRegistered } from '../context/CommentsContext';
 import CardComment from './CardComment';
@@ -13,31 +12,31 @@ function CommentsBox() {
 	useEffect(() => {
 		loadingComments();
 	}, [comments]);
+
 	return (
 		<section
-			className="h-[400px]  md:min-h-screen  w-full bg-center bg-cover opacity-80 bg-[url('../../img/CommentsBackground.jpg')]
+			className="h-[400px]  md:min-h-screen  w-full bg-center bg-cover opacity-80 bg-[url('../../img/CommentsBackground.jpg')] flex items-center justify-center flex-wrap
          "
 		>
-			<div className='flex'>
-				{comments ? (
-					comments.map((com, index) => {
-						return (
-							<CardComment key={index} name={com.name} comment={com.comment} />
-						);
-					})
-				) : (
-					<NoComments />
-				)}
-			</div>
+			{comments.length > 0 ? (
+				comments.map((com, index) => {
+					return (
+						<CardComment key={index} name={com.name} comment={com.comment} />
+					);
+				})
+			) : (
+				<NoComments />
+			)}
 		</section>
 	);
 }
 
 function NoComments() {
 	return (
-		<div className='h-3/4  w-full flex flex-col gap-10 items-center justify-center  text-white  text-center '>
-			<h1 className='text-2xl sm:text-4xl'>No hay comentarios aún</h1>
-			<p className='text-gray-500 text-2xl'>Deja tu comentario 👇</p>
+		<div className='flex  w-full items-center justify-center  text-white '>
+			<p className='text-gray-500 text-2xl text-center self-center'>
+				Deja tu comentario 👇
+			</p>
 		</div>
 	);
 }

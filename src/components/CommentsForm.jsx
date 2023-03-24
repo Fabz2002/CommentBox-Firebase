@@ -24,7 +24,7 @@ function CommentsForm() {
 		}
 	}
 	return (
-		<div className=' w-full min-[484px]:w-[450px] md:w-[650px] md:h-[500px]  m-auto p-3  mt-5'>
+		<div className=' w-full min-[484px]:w-[450px] md:w-[650px]   m-auto p-3  mt-3'>
 			{error}
 			<h1 className='mb-4 border-b-2 border-[#f3f3f3] w-full text-start text-2xl text-current'>
 				Deja tu comentario

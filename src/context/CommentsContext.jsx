@@ -1,21 +1,18 @@
-import { useState, useContext, createContext, useEffect } from 'react';
+import { useState, useContext, createContext } from 'react';
 import { db } from '../../firebase.js';
 import {
 	doc,
 	setDoc,
 	collection,
-	query,
 	getDocs,
 	QuerySnapshot,
 } from 'firebase/firestore';
-import { comment } from 'postcss';
 const commentsContext = createContext();
 export const useCommentsRegistered = () => {
 	const comContext = useContext(commentsContext);
 	if (!comContext) throw new Error('There is no comments provider');
 	return comContext;
 };
-// const commentsRef = db.collection('comments');
 export function CommentsContextProvider({ children }) {
 	const [commentsRegistered, setCommentsRegistered] = useState(false);
 	const saveComment = (name, email, comment) => {
