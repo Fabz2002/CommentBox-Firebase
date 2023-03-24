@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useCommentsRegistered } from '../context/CommentsContext';
-import CardComment from './CardComment';
+
+import CommentsSlider from './CommentsSlider';
 
 function CommentsBox() {
 	const { loadComments } = useCommentsRegistered();
@@ -18,15 +19,7 @@ function CommentsBox() {
 			className="h-[400px]  md:min-h-screen  w-full bg-center bg-cover opacity-80 bg-[url('../../img/CommentsBackground.jpg')] flex items-center justify-center flex-wrap
          "
 		>
-			{comments.length > 0 ? (
-				comments.map((com, index) => {
-					return (
-						<CardComment key={index} name={com.name} comment={com.comment} />
-					);
-				})
-			) : (
-				<NoComments />
-			)}
+			{comments ? <CommentsSlider comments={comments} /> : <NoComments />}
 		</section>
 	);
 }

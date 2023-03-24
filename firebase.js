@@ -6,12 +6,12 @@ import { getFirestore } from 'firebase/firestore';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-	apiKey: 'AIzaSyBpN-ByLiUt-V-2bEbSeLmzd68L7p7Ty2U',
-	authDomain: 'testcomments-e96a6.firebaseapp.com',
-	projectId: 'testcomments-e96a6',
-	storageBucket: 'testcomments-e96a6.appspot.com',
-	messagingSenderId: '1047126594821',
-	appId: '1:1047126594821:web:0f7e907cf9e1af2655136c',
+	apiKey: 'AIzaSyAk5jYUXotnzmagCVMLMVacmteQKn_pAuM',
+	authDomain: 'commentsproyect.firebaseapp.com',
+	projectId: 'commentsproyect',
+	storageBucket: 'commentsproyect.appspot.com',
+	messagingSenderId: '149629899933',
+	appId: '1:149629899933:web:66495b7c8dbc624d34f074',
 };
 
 // Initialize Firebase
